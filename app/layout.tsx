@@ -12,9 +12,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="id">
       <body className="bg-mono-50 text-mono-900">
-        <Header />
+        {/* <Header /> */}
         <main className="min-h-screen">{children}</main>
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   )

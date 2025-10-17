@@ -2,7 +2,7 @@
 
 import { useSearchParams, useRouter } from 'next/navigation'
 import Button from './Button'
-import { FaEnvelope } from 'react-icons/fa'
+import { BsEnvelopeHeartFill } from "react-icons/bs";
 
 export default function Splash() {
   const searchParams = useSearchParams()
@@ -28,7 +28,7 @@ export default function Splash() {
       </div>
 
       <Button onClick={openInvitation}>
-        <FaEnvelope className="inline mr-2" /> Buka Undangan
+        <BsEnvelopeHeartFill className="inline mr-2" /> Buka Undangan
       </Button>
     </div>
   )

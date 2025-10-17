@@ -1,6 +1,5 @@
 import { FaInstagram } from 'react-icons/fa'
 
-
 interface PersonProps {
   name: string
   photo: string

@@ -9,8 +9,8 @@ export default function Quote({ text }: QuoteProps) {
   return (
     <div className="w-screen flex justify-center py-16 px-4 bg-mono-50">
       <div className="bg-mono-900 text-mono-50 rounded-2xl p-8 max-w-xl text-center relative">
-        <GiButterflyFlower className="text-7xl mb-4 mx-auto" />
-        <blockquote className="text-xs md:text-x1 leading-relaxed">
+        <img src="/icons/dove.svg" alt="quote" className="w-20 h-20 mx-autow-12 h-12 md:w-16 md:h-16 mx-auto" />
+        <blockquote className="text-xs md:text-x1 leading-relaxed py-6">
           {text}
         </blockquote>
       </div>

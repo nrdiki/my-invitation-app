@@ -16,9 +16,10 @@ export async function GET() {
     if (error) throw error;
 
     return NextResponse.json(data);
-  } catch (err: any) {
-    console.error("GET /api/guests error:", err.message);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Unknown error";
+  console.error("GET /api/guests error:", message);
+  return NextResponse.json({ error: message }, { status: 500 });
   }
 }
 
@@ -34,8 +35,9 @@ export async function POST(request: Request) {
     if (error) throw error;
 
     return NextResponse.json(data);
-  } catch (err: any) {
-    console.error("POST /api/guests error:", err.message);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+  } catch (err: unknown) {
+  const message = err instanceof Error ? err.message : "Unknown error";
+  console.error("POST /api/guests error:", message);
+  return NextResponse.json({ error: message }, { status: 500 });
   }
 }

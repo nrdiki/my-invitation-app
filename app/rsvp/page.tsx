@@ -1,4 +1,4 @@
-import RSVPForm from '../components/RSVPForm'
+import RSVPForm from '../components/sections/RSVPForm'
 
 export default function RSVPPage() {
   return (

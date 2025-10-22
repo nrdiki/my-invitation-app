@@ -54,7 +54,7 @@ export const groom: Person = {
 export const akad: EventDetail = {
   date: '09 November 2025',
   day: 'Minggu',
-  time: '10:00 WIB',
+  time: '08:00 WIB',
   location: 'Rumah Makan Saung Gunung Jati',
   address:
     'Jl. Letjen Mashudi No.45, Setiaratu, Kec. Cibeureum, Kota Tasikmalaya, Jawa Barat 46123',
@@ -64,7 +64,7 @@ export const akad: EventDetail = {
 export const resepsi: EventDetail = {
   date: '09 November 2025',
   day: 'Minggu',
-  time: '13:00 WIB',
+  time: '11:00 WIB',
   location: 'Rumah Makan Saung Gunung Jati',
   address:
     'Jl. Letjen Mashudi No.45, Setiaratu, Kec. Cibeureum, Kota Tasikmalaya, Jawa Barat 46123',

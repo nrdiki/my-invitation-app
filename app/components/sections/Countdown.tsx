@@ -9,6 +9,9 @@ interface CountdownProps {
 }
 
 export default function Countdown({ targetDate, photoSrc }: CountdownProps) {
+  const [timeLeft, setTimeLeft] = useState<Record<string, number>>({})
+  const [isMounted, setIsMounted] = useState(false)
+
   const calculateTimeLeft = () => {
     const difference = +new Date(targetDate) - +new Date()
     let timeLeft: Record<string, number> = {}
@@ -25,12 +28,19 @@ export default function Countdown({ targetDate, photoSrc }: CountdownProps) {
     return timeLeft
   }
 
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
-
   useEffect(() => {
-    const timer = setInterval(() => setTimeLeft(calculateTimeLeft()), 1000)
+    setIsMounted(true)
+    setTimeLeft(calculateTimeLeft())
+
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft())
+    }, 1000)
+
     return () => clearInterval(timer)
   }, [])
+
+  // Mencegah mismatch SSR vs client
+  if (!isMounted) return null
 
   return (
     <section className="w-full flex flex-col items-center py-16 px-4 bg-mono-50">

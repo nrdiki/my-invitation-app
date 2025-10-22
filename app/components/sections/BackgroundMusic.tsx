@@ -1,80 +1,25 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
-import { Volume, VolumeX } from 'lucide-react'
 
-interface BackgroundMusicProps {
-  src?: string
-  autoPlay?: boolean
-  volume?: number
-  fadeOutDuration?: number // dalam ms
-  isFading?: boolean
-}
+import { useEffect, useRef } from 'react'
 
-export default function BackgroundMusic({
-  src = '/music/wedding.mp3',
-  autoPlay = true,
-  volume = 0.3,
-  fadeOutDuration = 1000,
-  isFading = false,
-}: BackgroundMusicProps) {
-  const audioRef = useRef<HTMLAudioElement>(null)
-  const [isPlaying, setIsPlaying] = useState(autoPlay)
+export default function BackgroundMusic({ play }: { play: boolean }) {
+  const audioRef = useRef<HTMLAudioElement | null>(null)
 
   useEffect(() => {
-    const audio = audioRef.current
-    if (!audio) return
-
-    audio.volume = volume
-    if (autoPlay) {
-      const playPromise = audio.play()
-      if (playPromise !== undefined) {
-        playPromise.catch((err) => console.log('Audio play error:', err))
+    if (play && audioRef.current) {
+      // Coba play musik (beberapa browser butuh interaksi user dulu)
+      const playMusic = async () => {
+        try {
+          await audioRef.current!.play()
+        } catch (err) {
+          console.warn('Autoplay diblokir browser, user harus interaksi manual:', err)
+        }
       }
+      playMusic()
     }
-
-    return () => {
-      if (!audio) return
-      if (isFading) {
-        const startVolume = audio.volume
-        const step = startVolume / (fadeOutDuration / 50)
-        const fadeInterval = setInterval(() => {
-          if (!audio) return
-          if (audio.volume - step > 0) {
-            audio.volume -= step
-          } else {
-            audio.volume = 0
-            audio.pause()
-            clearInterval(fadeInterval)
-          }
-        }, 50)
-      } else {
-        audio.pause()
-      }
-    }
-  }, [autoPlay, volume, fadeOutDuration, isFading])
-
-  const togglePlay = () => {
-    const audio = audioRef.current
-    if (!audio) return
-
-    if (isPlaying) {
-      audio.pause()
-    } else {
-      audio.play()
-    }
-    setIsPlaying(!isPlaying)
-  }
+  }, [play])
 
   return (
-    <>
-      <audio ref={audioRef} src={src} loop />
-      {/* Tombol play/pause */}
-      <button
-        onClick={togglePlay}
-        className="fixed bottom-6 right-6 z-50 bg-gray-800/70 text-white p-3 rounded-full shadow-lg hover:bg-gray-900 transition"
-      >
-        {isPlaying ? <Volume size={24} /> : <VolumeX size={24} />}
-      </button>
-    </>
+    <audio ref={audioRef} loop preload="auto" src="/music/wedding.mp3" />
   )
 }

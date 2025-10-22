@@ -56,14 +56,6 @@ export default function WishList() {
     <section className="relative py-24 px-6 bg-gradient-to-b from-gray-50 to-gray-100 text-gray-800">
       <div className="max-w-5xl mx-auto text-center relative">
         {/* Header */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-5xl font-dancing text-gray-900 mb-4"
-        >
-          Ucapan untuk Kami
-        </motion.h2>
 
         <p className="text-gray-600 mb-14 max-w-xl mx-auto">
           Terima kasih atas doa dan ucapan hangat dari sahabat serta keluarga 💞

@@ -16,8 +16,9 @@ export default function Couple({ bride, groom, prayerText }: CoupleProps) {
         <img
           src={person.photo}
           alt={person.name}
-          className="w-full h-full object-cover"
           loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover"
         />
       </div>
       <h3 className="text-3xl md:text-2xl font-elegant mb-1">{person.name}</h3>
